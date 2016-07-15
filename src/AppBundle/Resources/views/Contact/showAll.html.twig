@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Contact:showAll{% endblock %}
+
+{% block body %}
+    {% for contact in contacts %}
+        <p>{{ contact.name }}</p>
+        <p>{{ contact.surname }}</p>
+        <p>{{ contact.description }}</p>
+    {% else %}
+        <p>No contacts found</p>
+    {% endfor %}
+{% endblock %}

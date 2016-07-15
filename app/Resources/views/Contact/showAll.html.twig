@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}app:Resources:Contact:showAll{% endblock %}
+
+{% block body %}    
+    {% for contact in contacts %}
+        <p>Name: <h4><a href="{{ path('app_contact_show', { 'id': contact.id }) }}">{{contact.name}}</a></h4></p>
+        <a href="{{ path('app_contact_modify', {'id': contact.id}) }}">Edytuj kontakt</a>
+        <a href="{{ path('app_contact_delete', {'id': contact.id}) }}">Usuń kontakt</a>
+    {% else %}
+        <p>No contacts found</p>
+    {% endfor %}
+{% endblock %}
+
+
