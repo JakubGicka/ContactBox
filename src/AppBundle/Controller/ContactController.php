@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Contact;
+use AppBundle\Entity\Group;
+use AppBundle\Entity\Band;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -16,7 +18,7 @@ class ContactController extends Controller
 {
     /**
      * @Route("/new")
-     * @Template("AppBundle:Contact:new.html.twig")
+     * @Template("Contact/new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -50,7 +52,7 @@ class ContactController extends Controller
     
     /**
      * @Route("/new")
-     * @Template("AppBundle:Contact:create.html.twig")
+     * @Template("Contact/new.html.twig")
      */
     public function newAction()
     {
@@ -71,7 +73,7 @@ class ContactController extends Controller
     
     /**
      * @Route("/modify/{id}")
-     * @Template("AppBundle:Contact:new.html.twig")
+     * @Template("Contact/modify.html.twig")
      */
     public function updateAction($id, Request $request)
     {
@@ -100,7 +102,7 @@ class ContactController extends Controller
                 ->getManager()
                 ->flush();
                 
-            return $this->redirectToRoute('app_contact_showall');
+            return $this->redirectToRoute('app_contact_show', ['id' => $contact->getId()]);
         }
         
         return ['form' => $form->createView()];
@@ -108,7 +110,7 @@ class ContactController extends Controller
     
     /**
      * @Route("/modify/{id}")
-     * @Template("AppBundle:Contact:new.html.twig")
+     * @Template("Contact/modify.html.twig")
      */
     public function modifyAction()
     {
@@ -127,7 +129,7 @@ class ContactController extends Controller
                 ->getManager()
                 ->flush();
                 
-            return $this->redirectToRoute('app_contact_showall');
+            return $this->redirectToRoute('app_contact_show', ['id' => $contact->getId()]);
         }
         
         return ['form' => $form->createView()];
@@ -136,7 +138,7 @@ class ContactController extends Controller
     
     /**
      * @Route("/delete/{id}")
-     * @Template("AppBundle:Contact:delete.html.twig")
+     * @Template("Contact/delete.html.twig")
      */
     public function deleteAction($id)
     {
@@ -160,15 +162,18 @@ class ContactController extends Controller
      * @Template("Contact/show.html.twig")
      */
     public function showAction($id)
-    {
-        
+    { 
         $contact = $this->getDoctrine()->getRepository('AppBundle:Contact')->find($id);
         
         if (!$contact) {          
             throw $contact->createNotFoundException('Contact not found');
         }
         
-        return ['contact' => $contact];
+        $address = $this->getDoctrine()->getRepository('AppBundle:Address')->findOneByContact($contact->getId());
+        $email = $this->getDoctrine()->getRepository('AppBundle:Email')->findOneByContact($contact->getId());
+        $phone = $this->getDoctrine()->getRepository('AppBundle:Phone')->findOneByContact($contact->getId());
+        
+        return ['contact' => $contact, 'address' => $address, 'email' => $email, 'phone' => $phone];
         
         
 //        return ['contact' => 
@@ -178,7 +183,6 @@ class ContactController extends Controller
 //            ->find($id)
 //        ];
     }
-    
     
     /**
      * @Route("/showAll")
@@ -193,5 +197,6 @@ class ContactController extends Controller
             ->findAll()
         ];
     }
+    
 
 }

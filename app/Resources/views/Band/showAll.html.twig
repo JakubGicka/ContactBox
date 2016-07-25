@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}app:Resources:Band:showAll{% endblock %}
+
+{% block body %}    
+    {% for band in bands %}
+        <p>Band: <h4><a href="{{ path('app_band_show', { 'id': band.id }) }}">{{band.name}}</a></h4></p>
+        
+    {% else %}
+        <p>No bands found</p>
+    {% endfor %}
+{% endblock %}
+
+

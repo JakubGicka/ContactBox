@@ -60,6 +60,12 @@ class Contact
     private $emails;
     
     /**
+     * @ORM\ManyToMany(targetEntity="Band", inversedBy="contacts", cascade={"persist"})
+     * @ORM\JoinTable(name="contacts_bands")
+     */
+    private $bands;
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -137,6 +143,7 @@ class Contact
     {
         return $this->description;
     }
+    
     /**
      * Constructor
      */
@@ -145,6 +152,8 @@ class Contact
         $this->addresses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
         $this->emails = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->bands = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -244,5 +253,77 @@ class Contact
     public function getEmails()
     {
         return $this->emails;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param \AppBundle\Entity\Group $group
+     * @return Contact
+     */
+    public function addGroup(\AppBundle\Entity\Group $group)
+    {
+        $this->groups[] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param \AppBundle\Entity\Group $groups
+     */
+    public function removeGroup(\AppBundle\Entity\Group $group)
+    {
+        $this->groups->removeElement($group);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+    
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+    
+
+    /**
+     * Add bands
+     *
+     * @param \AppBundle\Entity\Band $band
+     * @return Contact
+     */
+    public function addBand(\AppBundle\Entity\Band $band)
+    {
+        $this->bands[] = $band;
+
+        return $this;
+    }
+
+    /**
+     * Remove bands
+     *
+     * @param \AppBundle\Entity\Band $band
+     */
+    public function removeBand(\AppBundle\Entity\Band $band)
+    {
+        $this->bands->removeElement($band);
+    }
+
+    /**
+     * Get bands
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBands()
+    {
+        return $this->bands;
     }
 }

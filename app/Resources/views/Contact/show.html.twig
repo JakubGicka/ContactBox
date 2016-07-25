@@ -4,12 +4,58 @@
 
 {% block body %}
 <p>
+    {{ "Kontakt:" }}
     <p>Id: {{contact.id}}</p>
     <p>Name: {{contact.name}}</p>
     <p>Surname: {{contact.surname}}</p>
     <p>Description: {{contact.description}}</p>
-
+    <a href="{{ path('app_band_add', {'id': contact.id})}}">Dodaj kontakt do grupy</a>
     <a href="{{ path('app_contact_modify', {'id': contact.id}) }}">Edytuj kontakt</a>
+    <a href="{{ path('app_band_showall') }}">Wyświetl grupy</a>
+    
+    <p><br></p>
+    {% if address is not null %}
+        {{ 'Adres:' }}
+        <p>Id: {{address.id}}</p>
+        <p>City: {{address.city}}</p>
+        <p>Street: {{address.street}}</p>
+        <p>House number: {{address.houseNumber}}</p>
+        <p>Flat number: {{address.flatNumber}}</p>
+        <a href="{{ path('app_address_modify', {'id': contact.id}) }}">Edytuj adres</a>
+        <a href="{{ path('app_address_delete', {'id': contact.id}) }}">Usuń adres</a>
+    {% elseif address is null %}
+        {{ 'Brak adresu' }}
+        <p><br></p>
+        <a href="{{ path('app_address_new', {'id': contact.id}) }}">Dodaj adres</a>
+    {% endif %}
+    
+    <p><br></p>
+    {% if email is not null %}
+        {{ 'Email:' }}
+        <p>Id: {{email.id}}</p>
+        <p>Email: {{email.email}}</p>
+        <p>Type: {{email.type}}</p>
+        <a href="{{ path('app_email_modify', {'id': contact.id}) }}">Edytuj email</a>
+        <a href="{{ path('app_email_delete', {'id': contact.id}) }}">Usuń email</a>
+    {% elseif email is null %}
+        {{ 'Brak adresu email' }}
+        <p><br></p>
+        <a href="{{ path('app_email_new', {'id': contact.id}) }}">Dodaj email</a>
+    {% endif %}
+    
+    <p><br></p>
+    {% if phone is not null %}
+        {{ 'Telefon:' }}
+        <p>Id: {{phone.id}}</p>
+        <p>Phone number: {{phone.phoneNumber}}</p>
+        <p>Type: {{phone.type}}</p>
+        <a href="{{ path('app_phone_modify', {'id': contact.id}) }}">Edytuj telefon</a>
+        <a href="{{ path('app_phone_delete', {'id': contact.id}) }}">Usuń telefon</a>
+    {% elseif phone is null %}
+        {{ 'Brak telefonu' }}
+        <p><br></p>
+        <a href="{{ path('app_phone_new', {'id': contact.id}) }}">Dodaj numer telefonu</a>
+    {% endif %}
 </p>
 {% endblock %}
 
