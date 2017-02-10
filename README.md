@@ -7,5 +7,7 @@ Users of the application can:
 
 - add persons to the list of contacts,
 - show contacts,
-- modify contacts.
+- modify contacts,
+- add contacts to the groups.
+
 
