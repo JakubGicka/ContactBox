@@ -25,7 +25,6 @@ class AddressController extends Controller
         
         $form = $this
             ->createFormBuilder($address)
-            //->setAction($this->generateUrl('app_contact_create'))
             ->add('city')
             ->add('street')
             ->add('houseNumber')
@@ -33,7 +32,7 @@ class AddressController extends Controller
             ->add('submit', 'submit')
             ->getForm();
         
-        $form->handleRequest($request);   //pobranie pól i wypełnienie contactu tym, co przyszło w formularzu
+        $form->handleRequest($request);   
         
         $em = $this->getDoctrine()->getManager();
         $contact = $em->getRepository('AppBundle:Contact')->find($id);
@@ -68,7 +67,6 @@ class AddressController extends Controller
         
         $form = $this
                 ->createFormBuilder($address)
-                //->setAction($this->generateUrl('app_contact_create'))  //jeśli nie ma action, to wysyła się na tem sam adres
                 ->add('city')
                 ->add('street')
                 ->add('houseNumber')
@@ -95,7 +93,8 @@ class AddressController extends Controller
             throw $this->createNotFoundException('Contact not found');
         }
         
-        $address = $this->getDoctrine()->getRepository('AppBundle:Address')->findOneByContact($contact->getId());  //pobranie adresu z kontaktu
+        $address = $this->getDoctrine()->getRepository('AppBundle:Address')
+            ->findOneByContact($contact->getId());  //pobranie adresu z kontaktu
         
         $form = $this
                 ->createFormBuilder($address)  
@@ -163,7 +162,8 @@ class AddressController extends Controller
             throw $this->createNotFoundException('Contact not found');
         }
         
-        $address = $this->getDoctrine()->getRepository('AppBundle:Address')->findOneByContact($contact->getId());
+        $address = $this->getDoctrine()->getRepository('AppBundle:Address')
+            ->findOneByContact($contact->getId());
         
         $em = $this->getDoctrine()->getManager();
         $em->remove($address);

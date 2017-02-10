@@ -3,10 +3,16 @@
 {% block title %}app:Resources:Band:show{% endblock %}
 
 {% block body %}
-<p>
-    {{ "Grupa:" }}
-    <p>Id: {{band.id}}</p>
-    <p>Name: {{band.name}}</p>
-</p>
+    <p>
+        <p>Grupa: {{band.name}}</p>
+    </p>
+    <p><br></p>
+        {{ 'Kontakty:' }}
+        {% for contacts_bands in contacts_bands %}
+            <p><h4><a href="{{ path('app_contact_show', { 'id': contacts_bands.contact.id }) }}">{{contacts_bands.contact.name}}</a></h4></p>
+        {% else %}
+            <p>No contacts found</p>
+        {% endfor %}
+    <p><br></p>
 {% endblock %}
 

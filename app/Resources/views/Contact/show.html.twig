@@ -6,12 +6,20 @@
 <p>
     {{ "Kontakt:" }}
     <p>Id: {{contact.id}}</p>
-    <p>Name: {{contact.name}}</p>
-    <p>Surname: {{contact.surname}}</p>
-    <p>Description: {{contact.description}}</p>
-    <a href="{{ path('app_band_add', {'id': contact.id})}}">Dodaj kontakt do grupy</a>
-    <a href="{{ path('app_contact_modify', {'id': contact.id}) }}">Edytuj kontakt</a>
-    <a href="{{ path('app_band_showall') }}">Wyświetl grupy</a>
+    <p>Imię: {{contact.name}}</p>
+    <p>Nazwisko: {{contact.surname}}</p>
+    <p>Opis: {{contact.description}}</p>
+    
+    <a href="{{ path('app_contact_modify', {'id': contact.id}) }}">Edytuj kontakt</a> 
+    
+    <p><br></p>
+    {{ 'Grupa:' }}
+    {% for contacts_bands in contacts_bands %}
+        <p><h4><a href="{{ path('app_band_show', { 'name': contacts_bands.band.name }) }}">{{contacts_bands.band.name}}</a></h4></p>
+    {% else %}
+        <p>Nie dodano kontaktu do żadnej grupy</p>
+        <a href="{{ path('app_band_create', {'id': contact.id}) }}">Dodaj kontakt do grupy</a>
+    {% endfor %}
     
     <p><br></p>
     {% if address is not null %}

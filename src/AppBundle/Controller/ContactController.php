@@ -3,8 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Contact;
-use AppBundle\Entity\Group;
 use AppBundle\Entity\Band;
+use AppBundle\Entity\Contacts_Bands;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -26,7 +26,7 @@ class ContactController extends Controller
         
         $form = $this
             ->createFormBuilder($contact)
-            //->setAction($this->generateUrl('app_contact_create'))
+            //->setAction($this->generateUrl('app_contact_create'))    //jeśli nie ma action, to wysyła się na ten sam adres
             ->add('name')
             ->add('surname')
             ->add('description')
@@ -60,7 +60,6 @@ class ContactController extends Controller
         
         $form = $this
                 ->createFormBuilder($contact)
-                //->setAction($this->generateUrl('app_contact_create'))  //jeśli nie ma action, to wysyła się na tem sam adres
                 ->add('name')
                 ->add('surname')
                 ->add('description')
@@ -169,19 +168,12 @@ class ContactController extends Controller
             throw $contact->createNotFoundException('Contact not found');
         }
         
+        $contacts_bands = $this->getDoctrine()->getRepository('AppBundle:Contacts_Bands')->findByContact($contact);
         $address = $this->getDoctrine()->getRepository('AppBundle:Address')->findOneByContact($contact->getId());
         $email = $this->getDoctrine()->getRepository('AppBundle:Email')->findOneByContact($contact->getId());
         $phone = $this->getDoctrine()->getRepository('AppBundle:Phone')->findOneByContact($contact->getId());
         
-        return ['contact' => $contact, 'address' => $address, 'email' => $email, 'phone' => $phone];
-        
-        
-//        return ['contact' => 
-//            $this
-//            ->getDoctrine()
-//            ->getRepository('AppBundle:Contact')
-//            ->find($id)
-//        ];
+        return ['contact' => $contact, 'contacts_bands' => $contacts_bands, 'address' => $address, 'email' => $email, 'phone' => $phone];
     }
     
     /**
@@ -197,6 +189,6 @@ class ContactController extends Controller
             ->findAll()
         ];
     }
-    
 
+    
 }

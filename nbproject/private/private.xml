@@ -3,26 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Controller/DefaultController.php</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Controller/GroupController.php</file>
+            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/app/Resources/views/Band/new.html.twig</file>
             <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/app/Resources/views/Contact/show.html.twig</file>
             <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Controller/AddressController.php</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Entity/Band.php</file>
             <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/app/Resources/views/Contact/showAll.html.twig</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/app/Resources/views/Contact/new.html.twig</file>
             <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Controller/EmailController.php</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Entity/Phone.php</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Entity/Group.php</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Controller/ContactController.php</file>
             <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/app/Resources/views/Band/show.html.twig</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Entity/Contact.php</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Controller/BandController.php</file>
+            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Controller/ContactController.php</file>
             <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/app/Resources/views/default/index.html.twig</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Entity/Email.php</file>
+            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Controller/BandController.php</file>
+            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Entity/Contacts_Bands.php</file>
             <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/app/Resources/views/Band/showAll.html.twig</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/app/Resources/views/Band/add.html.twig</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Entity/Address.php</file>
-            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Entity/Contacts_Groups.php</file>
+            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/README.md</file>
+            <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/app/Resources/views/Band/create.html.twig</file>
             <file>file:/C:/Workspace/vagrant/projekt_skrzynka_kontaktowa/src/AppBundle/Controller/PhoneController.php</file>
         </group>
     </open-files>

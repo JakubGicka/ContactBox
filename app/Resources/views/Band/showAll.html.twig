@@ -2,12 +2,15 @@
 
 {% block title %}app:Resources:Band:showAll{% endblock %}
 
-{% block body %}    
+{% block body %}
+    <p><br></p>
+    {{ 'Grupy:' }}
     {% for band in bands %}
-        <p>Band: <h4><a href="{{ path('app_band_show', { 'id': band.id }) }}">{{band.name}}</a></h4></p>
+        <p><h4><a href="{{ path('app_band_show', { 'name': band.name }) }}">{{band.name}}</a></h4></p>
         
     {% else %}
         <p>No bands found</p>
+        <a href="{{ path('app_band_new') }}">Stwórz grupę</a>
     {% endfor %}
 {% endblock %}
 

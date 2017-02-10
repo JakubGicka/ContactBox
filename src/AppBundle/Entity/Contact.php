@@ -152,7 +152,6 @@ class Contact
         $this->addresses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
         $this->emails = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->bands = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -255,42 +254,11 @@ class Contact
         return $this->emails;
     }
 
-    /**
-     * Add groups
-     *
-     * @param \AppBundle\Entity\Group $group
-     * @return Contact
-     */
-    public function addGroup(\AppBundle\Entity\Group $group)
-    {
-        $this->groups[] = $group;
-
-        return $this;
-    }
-
-    /**
-     * Remove groups
-     *
-     * @param \AppBundle\Entity\Group $groups
-     */
-    public function removeGroup(\AppBundle\Entity\Group $group)
-    {
-        $this->groups->removeElement($group);
-    }
-
-    /**
-     * Get groups
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getGroups()
-    {
-        return $this->groups;
-    }
+    
     
     public function __toString()
     {
-        return (string) $this->getName();
+        return 'Contact:' .$this->name;
     }
     
 
@@ -303,7 +271,7 @@ class Contact
     public function addBand(\AppBundle\Entity\Band $band)
     {
         $this->bands[] = $band;
-
+        $band->addContact($this);
         return $this;
     }
 

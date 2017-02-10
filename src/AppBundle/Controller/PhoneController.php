@@ -25,14 +25,13 @@ class PhoneController extends Controller
         
         $form = $this
             ->createFormBuilder($phone)
-            //->setAction($this->generateUrl('app_contact_create'))
             ->add('phoneNumber')
             ->add('type', 'choice', array('label'=>'Type',
                 'choices'=>array('Domowy'=>'domowy', 'Służbowy'=>'służbowy'),))
             ->add('submit', 'submit')
             ->getForm();
         
-        $form->handleRequest($request);   //pobranie pól i wypełnienie contactu tym, co przyszło w formularzu
+        $form->handleRequest($request);   
         
         $em = $this->getDoctrine()->getManager();
         $contact = $em->getRepository('AppBundle:Contact')->find($id);
@@ -67,7 +66,6 @@ class PhoneController extends Controller
         
         $form = $this
                 ->createFormBuilder($phone)
-                //->setAction($this->generateUrl('app_contact_create'))  //jeśli nie ma action, to wysyła się na tem sam adres
                 ->add('phoneNumber')
                 ->add('type', 'choice', array('label'=>'Type',
                     'choices'=>array('Domowy'=>'domowy', 'Służbowy'=>'służbowy'),))
@@ -93,7 +91,8 @@ class PhoneController extends Controller
             throw $this->createNotFoundException('Contact not found');
         }
         
-        $phone = $this->getDoctrine()->getRepository('AppBundle:Phone')->findOneByContact($contact->getId());  //pobranie telefonu z kontaktu
+        $phone = $this->getDoctrine()->getRepository('AppBundle:Phone')
+            ->findOneByContact($contact->getId());  //pobranie telefonu z kontaktu
         
         $form = $this
                 ->createFormBuilder($phone)  
@@ -160,7 +159,8 @@ class PhoneController extends Controller
             throw $this->createNotFoundException('Contact not found');
         }
         
-        $phone = $this->getDoctrine()->getRepository('AppBundle:Phone')->findOneByContact($contact->getId());
+        $phone = $this->getDoctrine()->getRepository('AppBundle:Phone')
+            ->findOneByContact($contact->getId());
         
         $em = $this->getDoctrine()->getManager();
         $em->remove($phone);

@@ -25,14 +25,13 @@ class EmailController extends Controller
         
         $form = $this
             ->createFormBuilder($email)
-            //->setAction($this->generateUrl('app_contact_create'))
             ->add('email')
             ->add('type', 'choice', array('label'=>'Type',
                 'choices'=>array('Domowy'=>'domowy', 'Służbowy'=>'służbowy'),))
             ->add('submit', 'submit')
             ->getForm();
         
-        $form->handleRequest($request);   //pobranie pól i wypełnienie contactu tym, co przyszło w formularzu
+        $form->handleRequest($request);   
         
         $em = $this->getDoctrine()->getManager();
         $contact = $em->getRepository('AppBundle:Contact')->find($id);
@@ -66,13 +65,12 @@ class EmailController extends Controller
         $email = new Email();
         
         $form = $this
-                ->createFormBuilder($email)
-                //->setAction($this->generateUrl('app_contact_create'))  //jeśli nie ma action, to wysyła się na tem sam adres
-                ->add('email')
-                ->add('type', 'choice', array('label'=>'Type',
-                    'choices'=>array('Domowy'=>'domowy', 'Służbowy'=>'służbowy'),))
-                ->add('submit', 'submit')
-                ->getForm();
+            ->createFormBuilder($email)
+            ->add('email')
+            ->add('type', 'choice', array('label'=>'Type',
+                'choices'=>array('Domowy'=>'domowy', 'Służbowy'=>'służbowy'),))
+            ->add('submit', 'submit')
+            ->getForm();
         
         return ['form' => $form->createView()];
         
@@ -93,7 +91,8 @@ class EmailController extends Controller
             throw $this->createNotFoundException('Contact not found');
         }
         
-        $email = $this->getDoctrine()->getRepository('AppBundle:Email')->findOneByContact($contact->getId());  //pobranie emailu z kontaktu
+        $email = $this->getDoctrine()->getRepository('AppBundle:Email')
+            ->findOneByContact($contact->getId());  //pobranie emailu z kontaktu
         
         $form = $this
                 ->createFormBuilder($email)  
@@ -160,7 +159,8 @@ class EmailController extends Controller
             throw $this->createNotFoundException('Contact not found');
         }
         
-        $email = $this->getDoctrine()->getRepository('AppBundle:Email')->findOneByContact($contact->getId());
+        $email = $this->getDoctrine()->getRepository('AppBundle:Email')
+            ->findOneByContact($contact->getId());
         
         $em = $this->getDoctrine()->getManager();
         $em->remove($email);

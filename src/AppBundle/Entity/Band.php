@@ -74,6 +74,13 @@ class Band
         $this->contacts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    
+    public function __toString()
+    {
+        return 'Band:' .$this->name;
+    }
+    
+    
     /**
      * Add contacts
      *

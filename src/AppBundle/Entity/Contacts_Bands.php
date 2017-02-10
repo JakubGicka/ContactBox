@@ -29,7 +29,7 @@ class Contacts_Bands
 
     /**
      * @ORM\ManyToOne(targetEntity="Band", inversedBy="contacts")
-     * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="band_id", referencedColumnName="id")
      */
     private $band;
 
